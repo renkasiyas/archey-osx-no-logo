@@ -109,8 +109,8 @@ ${GREEN}       ####### ##  #######            Version: $version $versionString
 ${YELLOW}     ######################           Kernel: $kernel
 ${YELLOW}    #####################             Uptime: $uptime
 ${LRED}    ####################              Shell: $shell
-${RED}    ####################              Terminal $terminal
-${RED}    #####################             Packages $packages
+${RED}    ####################              Terminal: $terminal
+${RED}    #####################             Packages: $packages
 ${PURPLE}     ######################           CPU: $cpu
 ${PURPLE}      ####################            Memory: $ram
 ${BLUE}        ################              Disk Used: $disk
