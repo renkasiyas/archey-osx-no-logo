@@ -24,6 +24,9 @@ if [ -z "$ipAddress" ]; then
 fi
 
 case $versionShort in
+    10.12)
+        versionString="Sierra"
+        ;;
     10.11)
         versionString="El Capitan"
         ;;
@@ -101,7 +104,7 @@ fi
 # Output
 
 echo -e "
-                  
+
 ${GREEN}                  ###
 ${GREEN}                ####                  User: $user
 ${GREEN}                ###                   Hostname: $hostname
