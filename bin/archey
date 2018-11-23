@@ -16,14 +16,16 @@ versionMajor=`echo $versionNumber | cut -d'.' -f1`
 versionMinor=`echo $versionNumber | cut -d'.' -f2`
 versionShort="${versionMajor}.${versionMinor}"
 
-
-## en1 or en0 should contain the ip address
-ipAddress=`ipconfig getifaddr en1`
-if [ -z "$ipAddress" ]; then
-    ipAddress=`ipconfig getifaddr en0`
-fi
+ipAddress=`dig +short myip.opendns.com @resolver1.opendns.com`
+iplAddress=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
 
 case $versionShort in
+    10.14)
+      versionString="Mojave"
+      ;;
+    10.13)
+        versionString="High Sierra"
+        ;;
     10.12)
         versionString="Sierra"
         ;;
@@ -91,33 +93,34 @@ ram="$((mem/1073741824)) GB"
 disk=`df | head -2 | tail -1 | awk '{print $5}'`
 
 # Add a -c option to enable classic color logo
-if [[ $1 == "-c" ]]; then
-  GREEN='\033[00;32m'
-  YELLOW='\033[00;33m'
-  LRED='\033[01;31m'
-  RED='\033[00;31m'
-  PURPLE='\033[00;35m'
-  CYAN='\033[00;36m'
-  BLUE='\033[00;34m'
-fi
+# if [[ $1 == "-c" ]]; then
+GREEN='\033[00;32m'
+YELLOW='\033[00;33m'
+LRED='\033[01;31m'
+RED='\033[00;31m'
+PURPLE='\033[00;35m'
+CYAN='\033[00;36m'
+BLUE='\033[00;34m'
+ENDCOLOR='\033[0m'
+# fi
 
 # Output
 
 echo -e "
 
-${GREEN}                  ###
-${GREEN}                ####                  User: $user
-${GREEN}                ###                   Hostname: $hostname
-${GREEN}       ####### ##  #######            Version: $version $versionString
-${YELLOW}     ######################           Kernel: $kernel
-${YELLOW}    #####################             Uptime: $uptime
-${LRED}    ####################              Shell: $shell
-${RED}    ####################              Terminal: $terminal
-${RED}    #####################             Packages: $packages
-${PURPLE}     ######################           CPU: $cpu
-${PURPLE}      ####################            Memory: $ram
-${BLUE}        ################              Disk Used: $disk
-${BLUE}         ####     #####               Internal IP: $ipAddress
+${CYAN}       User:${ENDCOLOR} $user
+${CYAN}       Hostname:${ENDCOLOR} $hostname
+${CYAN}       Version:${ENDCOLOR} $version $versionString
+${CYAN}       Kernel:${ENDCOLOR} $kernel
+${CYAN}       Uptime:${ENDCOLOR} $uptime
+${CYAN}       Shell:${ENDCOLOR} $shell
+${CYAN}       Terminal:${ENDCOLOR} $terminal
+${CYAN}       Packages:${ENDCOLOR} $packages
+${CYAN}       CPU:${ENDCOLOR} $cpu
+${CYAN}       Memory:${ENDCOLOR} $ram
+${CYAN}       Disk Used:${ENDCOLOR} $disk
+${CYAN}       External IP:${ENDCOLOR} $ipAddress
+${CYAN}       Local IP:${ENDCOLOR} $iplAddress
 
 "
 tput sgr0
