@@ -115,7 +115,7 @@ ${CYAN}       Kernel:${ENDCOLOR} $kernel
 ${CYAN}       Uptime:${ENDCOLOR} $uptime
 ${CYAN}       Shell:${ENDCOLOR} $shell
 ${CYAN}       Terminal:${ENDCOLOR} $terminal
-${CYAN}       Packages:${ENDCOLOR} $packages
+${CYAN}       Packages (brew):${ENDCOLOR} $packages
 ${CYAN}       CPU:${ENDCOLOR} $cpu
 ${CYAN}       Memory:${ENDCOLOR} $ram
 ${CYAN}       Disk Used:${ENDCOLOR} $disk
