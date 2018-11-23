@@ -3,6 +3,8 @@ Archey for OS X
 
 An archey script for OS X.
 
+This fork removed Apple logo, fixes external IP address and add local IP address.
+
 !['Screenshot example'](https://raw.github.com/othaner/archey-osx-no-logo/master/screenshot.png)
 
 
