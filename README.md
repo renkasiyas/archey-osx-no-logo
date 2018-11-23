@@ -7,8 +7,8 @@ An archey script for OS X.
 
 Installation
 ------------
-    $ git clone git://github.com/joshfinnie/archey-osx.git
-    $ cd archey-osx/
+    $ git clone git://github.com/othaner/archey-osx-no-logo.git
+    $ cd archey-osx-no-logo/
     $ sudo chmod +x bin/archey
     $ ln -s $PWD/bin/archey /usr/local/bin/archey
     $ archey
