@@ -19,52 +19,57 @@ versionShort="${versionMajor}.${versionMinor}"
 ipAddress=`dig +short myip.opendns.com @resolver1.opendns.com`
 iplAddress=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
 
+location=`locateme -f {LAT},{LON}`
+
 case $versionShort in
-    10.14)
-      versionString="Mojave"
-      ;;
-    10.13)
-        versionString="High Sierra"
-        ;;
-    10.12)
-        versionString="Sierra"
-        ;;
-    10.11)
-        versionString="El Capitan"
-        ;;
-    10.10)
-        versionString="Yosemite"
-        ;;
-    10.9)
-        versionString="Mavericks"
-        ;;
-    10.8)
-        versionString="Mountain Lion"
-        ;;
-    10.7)
-        versionString="Lion"
-        ;;
-    10.6)
-        versionString="Snow Leopard"
-        ;;
-    10.5)
-        versionString="Leopard"
-        ;;
-    10.4)
-        versionString="Tiger"
-        ;;
-    10.3)
-        versionString="Panther"
-        ;;
-    10.2)
-        versionString="Jaguar"
-        ;;
-    10.1)
-        versionString="Puma"
-        ;;
-    10.0)
-        versionString="Cheetah"
-        ;;
+	10.15)
+		versionString="Catalina"
+		;;
+	10.14)
+		versionString="Mojave"
+		;;
+	10.13)
+		versionString="High Sierra"
+		;;
+	10.12)
+		versionString="Sierra"
+		;;
+	10.11)
+		versionString="El Capitan"
+		;;
+	10.10)
+		versionString="Yosemite"
+		;;
+	10.9)
+		versionString="Mavericks"
+		;;
+	10.8)
+		versionString="Mountain Lion"
+		;;
+	10.7)
+		versionString="Lion"
+		;;
+	10.6)
+		versionString="Snow Leopard"
+		;;
+	10.5)
+		versionString="Leopard"
+		;;
+	10.4)
+		versionString="Tiger"
+		;;
+	10.3)
+		versionString="Panther"
+		;;
+	10.2)
+		versionString="Jaguar"
+		;;
+	10.1)
+		versionString="Puma"
+		;;
+	10.0)
+		versionString="Cheetah"
+		;;
 esac
 
 ## Kernal
@@ -121,6 +126,7 @@ ${CYAN}       Memory:${ENDCOLOR} $ram
 ${CYAN}       Disk Used:${ENDCOLOR} $disk
 ${CYAN}       External IP:${ENDCOLOR} $ipAddress
 ${CYAN}       Local IP:${ENDCOLOR} $iplAddress
+${CYAN}       Coordinates:${ENDCOLOR} $location
 
 "
 tput sgr0
