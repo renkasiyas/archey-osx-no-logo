@@ -20,7 +20,7 @@ ipAddress=`dig +short myip.opendns.com @resolver1.opendns.com`
 iplAddress=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
 
 # Location & Sunset / Sunrise:
-ipgeolocation_key="XXXXXXXXXXX"
+ipgeolocation_key="61e1cd2c3a3b4460be434dcf9ce051f8"
 
 lat=`locateme -f {LAT}`
 lon=`locateme -f {LON}`
@@ -120,23 +120,39 @@ ENDCOLOR='\033[0m'
 
 # Output
 
+# echo -e "
+#
+# ${CYAN}       User:${ENDCOLOR} $user
+# ${CYAN}       Hostname:${ENDCOLOR} $hostname
+# ${CYAN}       Version:${ENDCOLOR} $version $versionString
+# ${CYAN}       Kernel:${ENDCOLOR} $kernel
+# ${CYAN}       Uptime:${ENDCOLOR} $uptime
+# ${CYAN}       Shell:${ENDCOLOR} $shell
+# ${CYAN}       Terminal:${ENDCOLOR} $terminal
+# ${CYAN}       Packages (brew):${ENDCOLOR} $packages
+# ${CYAN}       CPU:${ENDCOLOR} $cpu
+# ${CYAN}       Memory:${ENDCOLOR} $ram
+# ${CYAN}       Disk Used:${ENDCOLOR} $disk
+# ${CYAN}       External & Local IP:${ENDCOLOR} $ipAddress / $iplAddress
+# ${CYAN}       Coordinates:${ENDCOLOR} $lat, $lon
+# ${CYAN}       Sunrise/Noon/Sunset:${ENDCOLOR} $sunrise / $noon / $sunset
+#
+# "
+
 echo -e "
 
 ${CYAN}       User:${ENDCOLOR} $user
 ${CYAN}       Hostname:${ENDCOLOR} $hostname
 ${CYAN}       Version:${ENDCOLOR} $version $versionString
-${CYAN}       Kernel:${ENDCOLOR} $kernel
 ${CYAN}       Uptime:${ENDCOLOR} $uptime
-${CYAN}       Shell:${ENDCOLOR} $shell
-${CYAN}       Terminal:${ENDCOLOR} $terminal
 ${CYAN}       Packages (brew):${ENDCOLOR} $packages
 ${CYAN}       CPU:${ENDCOLOR} $cpu
 ${CYAN}       Memory:${ENDCOLOR} $ram
 ${CYAN}       Disk Used:${ENDCOLOR} $disk
-${CYAN}       External IP:${ENDCOLOR} $ipAddress
-${CYAN}       Local IP:${ENDCOLOR} $iplAddress
+${CYAN}       External & Local IP:${ENDCOLOR} $ipAddress / $iplAddress
 ${CYAN}       Coordinates:${ENDCOLOR} $lat, $lon
 ${CYAN}       Sunrise/Noon/Sunset:${ENDCOLOR} $sunrise / $noon / $sunset
 
 "
+
 tput sgr0
