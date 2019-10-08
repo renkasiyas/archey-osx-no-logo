@@ -3,7 +3,7 @@ Archey for OS X
 
 An archey script for OS X.
 
-This fork removed Apple logo, fixes external IP address and add local IP address.
+This fork removed Apple logo, fixes external IP address and add local IP address. Add OSX Catalina Support and add Geolocation Coordinates (require LocateMe https://github.com/netj/LocateMe)
 
 !['Screenshot example'](https://raw.github.com/othaner/archey-osx-no-logo/master/screenshot.png)
 
@@ -11,6 +11,7 @@ This fork removed Apple logo, fixes external IP address and add local IP address
 
 Installation
 ------------
+    $ brew install locateme
     $ git clone git://github.com/othaner/archey-osx-no-logo.git
     $ cd archey-osx-no-logo/
     $ sudo chmod +x bin/archey
