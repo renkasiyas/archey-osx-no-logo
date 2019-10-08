@@ -19,7 +19,16 @@ versionShort="${versionMajor}.${versionMinor}"
 ipAddress=`dig +short myip.opendns.com @resolver1.opendns.com`
 iplAddress=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
 
-location=`locateme -f {LAT},{LON}`
+# Location & Sunset / Sunrise:
+ipgeolocation_key="XXXXXXXXXXX"
+
+lat=`locateme -f {LAT}`
+lon=`locateme -f {LON}`
+response=`curl -s "https://api.ipgeolocation.io/astronomy?apiKey=61e1cd2c3a3b4460be434dcf9ce051f8&lat=${lat}&long=${lon}"`
+
+sunrise=`echo $response | jq -r '.sunrise'`
+noon=`echo $response | jq -r '.solar_noon'`
+sunset=`echo $response | jq -r '.sunset'`
 
 case $versionShort in
 	10.15)
@@ -126,7 +135,8 @@ ${CYAN}       Memory:${ENDCOLOR} $ram
 ${CYAN}       Disk Used:${ENDCOLOR} $disk
 ${CYAN}       External IP:${ENDCOLOR} $ipAddress
 ${CYAN}       Local IP:${ENDCOLOR} $iplAddress
-${CYAN}       Coordinates:${ENDCOLOR} $location
+${CYAN}       Coordinates:${ENDCOLOR} $lat, $lon
+${CYAN}       Sunrise/Noon/Sunset:${ENDCOLOR} $sunrise / $noon / $sunset
 
 "
 tput sgr0
