@@ -15,6 +15,7 @@ versionNumber=$(sw_vers -productVersion) # Finds version number
 versionMajor=$(echo $versionNumber | cut -d'.' -f1)
 versionMinor=$(echo $versionNumber | cut -d'.' -f2)
 versionShort="${versionMajor}.${versionMinor}"
+versionString=$(awk '/SOFTWARE LICENSE AGREEMENT FOR macOS/' '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf' | awk -F 'macOS ' '{print $NF}' | awk '{print substr($0, 0, length($0)-1)}')
 
 ipAddress=$(dig +short myip.opendns.com @resolver1.opendns.com)
 iplAddress=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
@@ -24,62 +25,10 @@ ipgeolocation_key="61e1cd2c3a3b4460be434dcf9ce051f8"
 
 lat=$(locateme -f {LAT})
 lon=$(locateme -f {LON})
-response=$(curl -s "https://api.ipgeolocation.io/astronomy?apiKey=61e1cd2c3a3b4460be434dcf9ce051f8&lat=${lat}&long=${lon}")
-
+response=$(curl -s "https://api.ipgeolocation.io/astronomy?apiKey=${ipgeolocation_key}&lat=${lat}&long=${lon}")
 sunrise=$(echo $response | jq -r '.sunrise')
 noon=$(echo $response | jq -r '.solar_noon')
 sunset=$(echo $response | jq -r '.sunset')
-
-case $versionShort in
-10.15)
-	versionString="Catalina"
-	;;
-10.14)
-	versionString="Mojave"
-	;;
-10.13)
-	versionString="High Sierra"
-	;;
-10.12)
-	versionString="Sierra"
-	;;
-10.11)
-	versionString="El Capitan"
-	;;
-10.10)
-	versionString="Yosemite"
-	;;
-10.9)
-	versionString="Mavericks"
-	;;
-10.8)
-	versionString="Mountain Lion"
-	;;
-10.7)
-	versionString="Lion"
-	;;
-10.6)
-	versionString="Snow Leopard"
-	;;
-10.5)
-	versionString="Leopard"
-	;;
-10.4)
-	versionString="Tiger"
-	;;
-10.3)
-	versionString="Panther"
-	;;
-10.2)
-	versionString="Jaguar"
-	;;
-10.1)
-	versionString="Puma"
-	;;
-10.0)
-	versionString="Cheetah"
-	;;
-esac
 
 ## Kernal
 kernel=$(uname)
